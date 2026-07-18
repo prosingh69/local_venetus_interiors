@@ -30,7 +30,7 @@ const Navbar = () => {
 
         
         <NavLink to={"/"} className="flex gap-3 justify-center items-center z-50">
-          <img src="/logoo.png" className='h-12 md:h-14 w-auto object-contain' alt="Venetus Interiors logo" />
+          <img src="/logoo.wepb" className='h-12 md:h-14 w-auto object-contain' alt="Venetus Interiors logo" />
           <h1 className='text-[#B74B21] font-bold text-xl md:text-2xl tracking-tight'>Venetus Interiors</h1>
         </NavLink>
 

@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <>
       <nav className='sticky top-0 z-40 flex justify-between items-center px-4 py-2 md:px-8 md:py-3 bg-[#F9F5F3] border-b border-[#F3E5DE] shadow-sm'>
-        {/* Hamburger Menu (Untouched) */}
+        {/* Hamburger Menu */}
         <div className="flex flex-1 md:hidden justify-start">
           <button
             onClick={toggleSidebar}
@@ -37,7 +37,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Center Logo (Untouched) */}
+        {/* Center Logo */}
         <div className="flex justify-center md:justify-start">
           <NavLink to={"/"} className="flex items-center z-50">
             <img
@@ -48,7 +48,7 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        {/* Right Side Items (Updated with WhatsApp) */}
+        {/* Right Side Items */}
         <div className="flex flex-1 md:flex-none justify-end items-center gap-2 lg:gap-4">
           <div className='hidden md:flex gap-6 lg:gap-10 items-center'>
             <NavLink to="/About" className={navLinkClasses}>About</NavLink>
@@ -67,12 +67,12 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* WhatsApp Icon Link */}
+          {/* WhatsApp Icon Link - Mobile Only (Added md:hidden) */}
           <a
             href="https://wa.me/917830015110"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center p-2 rounded-full hover:bg-green-100 transition-colors ml-2"
+            className="flex md:hidden items-center justify-center p-2 rounded-full hover:bg-green-100 transition-colors ml-2"
             aria-label="Chat on WhatsApp"
           >
             <svg 

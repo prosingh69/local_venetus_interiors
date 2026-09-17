@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   const navLinkClasses = ({ isActive }) => {
-    return `transition-colors text-[16px] lg:text-[18px] hover:text-[#B74B21] font-semibold ${isActive ? 'text-[#B74B21] font-bold' : 'text-gray-800'}`;
+    return `transition-colors text-[16px] lg:text-[19px] hover:text-[#B74B21] font-semibold ${isActive ? 'text-[#B74B21] font-bold' : 'text-gray-800'}`;
   };
 
   const sidebarLinkClasses = ({ isActive }) => {

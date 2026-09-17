@@ -11,6 +11,9 @@ const Home = () => {
     <>
     
     <Helmet prioritizeSeoTags>
+        <title>Venetus Interiors | Premium Home & Interior Design</title>
+        <meta name="description" content="Transform your living space with Venetus Interiors. Experience modern home design, stunning before-and-after room transformations, and premium aesthetics." />
+        <meta name="keywords" content="interior design, home decor, modern interiors, living room transformation, Venetus Interiors" />
         <title>Venetus Interior | Premium Home & Interior Design</title>
         <meta name="description" content="Transform your living space with Venetus Interior. Experience modern home design, stunning before-and-after room transformations, and premium aesthetics." />
         <meta name="keywords" content="interior design, home decor, modern interiors, living room transformation, Venetus Interior" />

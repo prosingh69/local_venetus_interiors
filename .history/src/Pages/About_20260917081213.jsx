@@ -9,12 +9,17 @@ const About = () => {
   return (
     <>
       <Helmet prioritizeSeoTags>
+        <title>About Us | Venetus Interiors</title>
+        <meta name="description" content="Discover the vision behind Venetus Interiors. We specialize in modern, elegant, and dark-themed interior styling that elevates your everyday living spaces." />
+        <meta name="keywords" content="about Venetus Interiors, interior design experts, luxury home styling, interior decor team, Bangalore interior design" />
         <title>About Us | Venetus Interior</title>
         <meta name="description" content="Discover the vision behind Venetus Interior. We specialize in modern, elegant, and dark-themed interior styling that elevates your everyday living spaces." />
         <meta name="keywords" content="about Venetus Interior, interior design experts, luxury home styling, interior decor team, Bangalore interior design" />
         <link rel="canonical" href="https://venetusinterior.in/about" />
 
         
+        <meta property="og:title" content="About Us | Venetus Interiors" />
+        <meta property="og:description" content="Discover the vision behind Venetus Interiors. We specialize in modern, elegant, and dark-themed interior styling that elevates your everyday living spaces." />
         <meta property="og:title" content="About Us | Venetus Interior" />
         <meta property="og:description" content="Discover the vision behind Venetus Interior. We specialize in modern, elegant, and dark-themed interior styling that elevates your everyday living spaces." />
         <meta property="og:type" content="website" />

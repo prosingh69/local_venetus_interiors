@@ -9,6 +9,8 @@ const Service = () => {
   return (
     <>
       <Helmet prioritizeSeoTags>
+        <title>Interior Design Services | Venetus Interiors</title>
+        <meta name="description" content="From initial planning to complete home makeovers, explore Venetus Interiors' comprehensive design services. We bring your dream space to life." />
         <title>Interior Design Services | Venetus Interior</title>
         <meta name="description" content="From initial planning to complete home makeovers, explore Venetus Interior's comprehensive design services. We bring your dream space to life." />
         <meta name="keywords" content="interior design services, space planning, home makeover, custom room design, interior styling" />

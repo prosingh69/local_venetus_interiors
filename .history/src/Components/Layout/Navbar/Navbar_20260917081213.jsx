@@ -43,6 +43,7 @@ const Navbar = () => {
             <img
               src="/logo_1.png"
               className='h-12 sm:h-14 md:h-16 w-auto object-contain scale-110'
+              alt="Venetus Interiors logo"
               alt="Venetus Interior logo"
             />
           </NavLink>

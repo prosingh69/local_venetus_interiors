@@ -28,9 +28,9 @@ const HeroPanel1 = () => {
         <source src="/herosection1.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay — cinematic dark gradient for high readability */}
-      <div className="absolute inset-0 bg-black/55 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/25 to-black pointer-events-none" />
+      {/* Cinematic Overlays for High Legibility & Full Vertical Screen View */}
+      <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/50 pointer-events-none" />
 
       {/* Content — Responsive: Centered on Mobile, Left-aligned Split on Desktop */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 xs:px-5 sm:px-8 md:px-12 lg:px-14 flex flex-col justify-center pt-20 sm:pt-28 md:pt-40 lg:pt-44 pb-12 sm:pb-16 md:pb-20 text-center md:text-left">
@@ -44,13 +44,13 @@ const HeroPanel1 = () => {
         >
           <NavLink
             to="/services"
-            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98"
+            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98 max-w-[94%] sm:max-w-none"
           >
-            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full tracking-wide uppercase">
+            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase whitespace-nowrap shrink-0">
               Flexible
             </span>
-            <span className="text-white/95">Luxury Interiors Within Your Budget</span>
-            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform" />
+            <span className="text-white/95 truncate">Luxury Interiors Within Your Budget</span>
+            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform shrink-0" />
           </NavLink>
         </motion.div>
 
@@ -226,7 +226,7 @@ const HeroPanel2 = () => {
   return (
     <div
       ref={ref}
-      className="relative w-full h-[60vh] md:h-screen md:min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black"
+      className="relative w-full h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black"
     >
       {/* Background Video */}
       <video
@@ -242,17 +242,17 @@ const HeroPanel2 = () => {
         <source src="/herosection2.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay — dark ambient fade that seamlessly melts into 100% pure black at both top and bottom */}
-      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
+      {/* Overlay — cinematic dark ambient fade that seamlessly melts into pure black */}
+      <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/50 pointer-events-none" />
       <div className="absolute inset-0 bg-[#5C2A0A]/18 pointer-events-none" />
 
       {/* Content — font matching image 1 description style */}
       <div className="relative z-10 w-full max-w-3xl mx-auto px-6 md:px-8 flex flex-col items-center justify-center text-center">
 
-        {/* Decorative subtle accent bar */}
+        {/* Decorative subtle accent bar (desktop only) */}
         <motion.div
-          className="w-12 h-px bg-primary/70 mb-5 sm:mb-8"
+          className="hidden sm:block w-12 h-px bg-primary/70 mb-5 sm:mb-8"
           initial={{ scaleX: 0, opacity: 0 }}
           animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}

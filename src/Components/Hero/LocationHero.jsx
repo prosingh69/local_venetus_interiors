@@ -32,62 +32,102 @@ const LocationHeroPanel1 = ({ locationName = 'Indiranagar', bgImage = '/design.j
         />
       </motion.div>
 
-      {/* Cinematic Overlays for High Legibility */}
-      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-black pointer-events-none" />
+      {/* Cinematic Overlays for High Legibility & Full Vertical Screen View */}
+      <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/50 pointer-events-none" />
 
       {/* Content Container */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-14 flex flex-col justify-center pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-8 text-center md:text-left">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-14 flex flex-col justify-center pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 text-center md:text-left">
         
         {/* Top Tag / Pill Badge */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
-          className="mb-2.5 sm:mb-3.5 flex items-center justify-center md:justify-start"
+          className="mb-3.5 sm:mb-5 flex items-center justify-center md:justify-start"
         >
           <NavLink
             to="/services"
-            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98"
+            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98 max-w-[94%] sm:max-w-none"
           >
-            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full tracking-wide uppercase">
+            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase whitespace-nowrap shrink-0">
               {locationName}
             </span>
-            <span className="text-white/95">Luxury Interiors in {locationName}, Bangalore</span>
-            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform" />
+            <span className="text-white/95 truncate">
+              <span className="sm:hidden">Luxury Home Interiors</span>
+              <span className="hidden sm:inline">Luxury Interiors in {locationName}, Bangalore</span>
+            </span>
+            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform shrink-0" />
           </NavLink>
         </motion.div>
 
-        {/* Dynamic 2-Line Headline for Location */}
-        <div className="mb-3 sm:mb-5 max-w-4xl flex flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0">
+        {/* Mobile View Title: Exactly matching Homepage Hero (Playfair serif + italic gold + curved underline) */}
+        <div className="md:hidden flex flex-col items-center text-center mb-2.5 sm:mb-4 w-full">
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="font-serif text-[clamp(32px,8.6vw,44px)] font-normal text-white tracking-tight leading-[1.12] drop-shadow-md"
+          >
+            Interior Designers in
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col items-center mt-1"
+          >
+            <span className="font-serif italic text-[clamp(26px,6.8vw,36px)] font-normal text-primary tracking-tight leading-[1.18] drop-shadow-md">
+              {locationName}
+            </span>
+
+            {/* Subtle curved gold underline from reference image */}
+            <svg
+              viewBox="0 0 260 12"
+              fill="none"
+              className="w-[clamp(230px,65vw,320px)] h-2.5 sm:h-3 mt-1 text-primary/80 pointer-events-none"
+            >
+              <path
+                d="M2 9C70 2 190 2 258 9"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+            </svg>
+          </motion.div>
+        </div>
+
+        {/* Desktop View Title: Left-aligned with animated typing effect */}
+        <div className="hidden md:flex mb-3 sm:mb-5 max-w-4xl flex-col items-start text-left mx-0">
           {/* Line 1 */}
-          <div className="w-full flex justify-center md:justify-start">
+          <div className="w-full flex justify-start">
             <TypingEffect
               text={`Interior Designers in`}
-              className="font-sans text-white text-[24px] xs:text-[27px] sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[52px] font-bold tracking-tight leading-[1.1] drop-shadow-md"
+              className="font-sans text-white md:text-5xl lg:text-[48px] xl:text-[52px] font-bold tracking-tight leading-[1.1] drop-shadow-md"
               startDelay={0.15}
               charDelay={0.035}
-              align="responsive-hero"
+              align="left"
               nowrap={true}
             />
           </div>
 
           {/* Line 2 — Stylized Serif Ampersand + Location Name */}
-          <div className="w-full flex justify-center md:justify-start mt-0.5 sm:mt-0 md:-mt-2">
+          <div className="w-full flex justify-start mt-0.5 sm:mt-0 md:-mt-2">
             <TypingEffect
               segments={[
                 {
                   text: '&',
-                  className: 'font-serif italic font-normal text-accent text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-[80px] xl:text-[88px] leading-none drop-shadow-md select-none inline-block align-baseline'
+                  className: 'font-serif italic font-normal text-accent md:text-7xl lg:text-[80px] xl:text-[88px] leading-none drop-shadow-md select-none inline-block align-baseline'
                 },
                 {
                   text: `${locationName}`,
-                  className: 'font-sans font-bold text-white text-[22px] xs:text-[25px] sm:text-3xl md:text-5xl lg:text-[48px] xl:text-[52px] tracking-tight leading-[1.1] drop-shadow-md align-baseline'
+                  className: 'font-sans font-bold text-white md:text-5xl lg:text-[48px] xl:text-[52px] tracking-tight leading-[1.1] drop-shadow-md align-baseline'
                 }
               ]}
               startDelay={0.7}
               charDelay={0.035}
-              align="responsive-hero"
+              align="left"
               itemsAlign="items-baseline"
               nowrap={true}
             />
@@ -207,7 +247,7 @@ const LocationHeroPanel2 = ({ locConfig, locationName = 'Bangalore' }) => {
   return (
     <div
       ref={ref}
-      className="relative w-full min-h-[70vh] md:h-screen md:min-h-[100dvh] py-16 md:py-24 flex items-center justify-center overflow-hidden bg-black"
+      className="relative w-full h-screen min-h-[100dvh] pt-24 pb-16 sm:py-20 md:py-24 flex items-center justify-center overflow-hidden bg-black"
     >
       {/* Background Video */}
       <video
@@ -224,37 +264,42 @@ const LocationHeroPanel2 = ({ locConfig, locationName = 'Bangalore' }) => {
       </video>
 
       {/* Cinematic Overlays that melt seamlessly into 100% pure black */}
-      <div className="absolute inset-0 bg-black/65 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
+      <div className="absolute inset-0 bg-black/50 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/50 pointer-events-none" />
       <div className="absolute inset-0 bg-[#5C2A0A]/18 pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-8 flex flex-col items-center justify-center text-center">
         
-        {/* Top Tag / Pill Badge — Identical structure & style as First Hero Section (No Glassmorphism) */}
+        {/* Top Tag / Pill Badge */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.08 }}
-          className="mb-5 sm:mb-6 flex items-center justify-center"
+          className="mb-4 sm:mb-6 flex items-center justify-center w-full px-4"
         >
           <NavLink
             to="/portfolio"
-            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#121212] hover:bg-[#1c1c1c] border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98"
+            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98"
           >
-            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full tracking-wide uppercase">
+            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase whitespace-nowrap shrink-0">
               {locationName}
             </span>
             <span className="text-white/95">
-              {highlightProject || `Luxury Interiors in ${locationName}, Bangalore`}
+              <span className="sm:hidden">
+                {locConfig?.apartments?.[0] ? `${locConfig.apartments[0]} Projects` : `Luxury Interiors`}
+              </span>
+              <span className="hidden sm:inline">
+                {highlightProject || `Luxury Interiors in ${locationName}, Bangalore`}
+              </span>
             </span>
-            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform" />
+            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform shrink-0" />
           </NavLink>
         </motion.div>
 
-        {/* Top Decorative Accent Bar */}
+        {/* Top Decorative Accent Bar (Desktop only to prevent awkward floating line on mobile) */}
         <motion.div
-          className="w-12 h-px bg-primary/70 mb-5 sm:mb-7"
+          className="hidden sm:block w-12 h-px bg-primary/70 mb-5 sm:mb-7"
           initial={{ scaleX: 0, opacity: 0 }}
           animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}

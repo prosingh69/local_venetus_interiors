@@ -3,11 +3,13 @@ import { ArrowRight, ChevronRight, Sparkle } from "lucide-react"
 import { NavLink } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 import { TypingEffect } from '../Animations/TypingEffect'
+import { useConsultationModal } from '../../context/ConsultationModalContext'
 
 /* ─── Panel 1 — Heading + Tag + Split Description & Pill Buttons (100vh Full Viewport) ─── */
 const HeroPanel1 = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { openModal } = useConsultationModal();
 
   return (
     <div
@@ -172,13 +174,17 @@ const HeroPanel1 = () => {
                 transition={{ duration: 0.45, ease: 'easeOut', delay: 2.1 }}
                 className="w-full sm:w-auto max-w-xs sm:max-w-none flex justify-center"
               >
-                <NavLink
-                  to="/contact"
-                  className="font-sans group w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary-hover text-white py-3 sm:py-3.5 px-6 sm:px-7 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 active:scale-95 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 shrink-0"
+                <button
+                  type="button"
+                  onClick={() => openModal({
+                    title: 'Book a Free Design Consultation',
+                    subtitle: 'Talk with our senior design architects to plan your layout, 3D designs, and exact budget.'
+                  })}
+                  className="font-sans group w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary-hover text-white py-3 sm:py-3.5 px-6 sm:px-7 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 active:scale-95 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 shrink-0 cursor-pointer"
                 >
                   <span>Book Free Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
-                </NavLink>
+                </button>
               </motion.div>
 
               <motion.div

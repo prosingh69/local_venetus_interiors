@@ -62,3 +62,24 @@ body {
   font-style: normal;
 }
 
+/* Sleek custom primary scrollbar for modals */
+.custom-modal-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-modal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 16px 0;
+}
+.custom-modal-scrollbar::-webkit-scrollbar-thumb {
+  background: #D4A53A;
+  border-radius: 9999px;
+}
+.custom-modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #B88C25;
+}
+.custom-modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #D4A53A transparent;
+}
+
+

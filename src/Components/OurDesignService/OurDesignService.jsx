@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import DesignServiceCard from './DesignServiceCard';
+import { useConsultationModal } from '../../context/ConsultationModalContext';
 
 const servicesData = [
   {
@@ -85,6 +86,8 @@ const cardVariants = {
 };
 
 const OurDesignService = ({ locationName = 'Bangalore' }) => {
+  const { openModal } = useConsultationModal();
+
   return (
     <section className="w-full bg-white pt-10 sm:pt-14 md:pt-16 pb-12 sm:pb-15 md:pb-18 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
@@ -137,13 +140,17 @@ const OurDesignService = ({ locationName = 'Bangalore' }) => {
           transition={{ duration: 0.55, delay: 0.3 }}
           className="mt-14 sm:mt-18 text-center flex flex-col sm:flex-row items-center justify-center gap-4 pt-6"
         >
-          <NavLink
-            to="/contact"
-            className="inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-white font-semibold text-sm sm:text-[15px] py-3.5 sm:py-4 px-8 sm:px-9 rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 transition-all duration-300 active:scale-95 group"
+          <button
+            type="button"
+            onClick={() => openModal({
+              title: 'Schedule Free Design Consultation',
+              subtitle: 'Discuss living rooms, modular kitchens, bedrooms & full-home transformations with our experts.'
+            })}
+            className="inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-white font-semibold text-sm sm:text-[15px] py-3.5 sm:py-4 px-8 sm:px-9 rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 transition-all duration-300 active:scale-95 group cursor-pointer"
           >
             <span>Schedule Free Design Consultation</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-          </NavLink>
+          </button>
 
           <NavLink
             to="/portfolio"

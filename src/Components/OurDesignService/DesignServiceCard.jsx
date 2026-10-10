@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { useConsultationModal } from '../../context/ConsultationModalContext';
 
 const defaultCardVariants = {
   hidden: { opacity: 0, scale: 0.93, y: 25 },
@@ -14,6 +14,7 @@ const defaultCardVariants = {
 };
 
 const DesignServiceCard = ({ title, description, image, index = 0, motionVariants }) => {
+  const { openModal } = useConsultationModal();
   const imageRef = useRef(null);
   // Fast trigger as soon as the image enters viewport
   const isInView = useInView(imageRef, { margin: "-8% 0px -8% 0px", once: false });
@@ -33,11 +34,16 @@ const DesignServiceCard = ({ title, description, image, index = 0, motionVariant
       className="group flex flex-col h-full"
     >
       {/* Image Container with Smooth Zoom on Hover */}
-      <NavLink
-        to="/contact"
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => openModal({
+          title: `${title} Consultation`,
+          subtitle: `Discuss customized ${title.toLowerCase()} layouts, material finishes & quotes with our design experts.`
+        })}
         ref={imageRef}
-        className="relative overflow-hidden rounded-2xl sm:rounded-3xl aspect-[16/10] mb-5 bg-gray-100 shadow-sm transition-all duration-500 group-hover:shadow-xl block"
-        aria-label={`Learn more about ${title}`}
+        className="relative overflow-hidden rounded-2xl sm:rounded-3xl aspect-[16/10] mb-5 bg-gray-100 shadow-sm transition-all duration-500 group-hover:shadow-xl block cursor-pointer"
+        aria-label={`Consult about ${title}`}
       >
         <img
           src={image}
@@ -94,14 +100,21 @@ const DesignServiceCard = ({ title, description, image, index = 0, motionVariant
             }`} />
           </motion.div>
         </motion.div>
-      </NavLink>
+      </div>
 
       {/* Content */}
       <div className="flex flex-col flex-1 px-1">
         <h3 className="font-sans text-lg sm:text-[19px] md:text-[17px] lg:text-[18px] xl:text-[21px] font-bold text-gray-900 mb-2.5 group-hover:text-primary transition-colors duration-300 tracking-tight text-center md:whitespace-nowrap">
-          <NavLink to="/contact" className="hover:text-primary">
+          <button
+            type="button"
+            onClick={() => openModal({
+              title: `${title} Consultation`,
+              subtitle: `Discuss customized ${title.toLowerCase()} layouts, material finishes & quotes with our design experts.`
+            })}
+            className="hover:text-primary transition-colors text-inherit font-inherit cursor-pointer"
+          >
             {title}
-          </NavLink>
+          </button>
         </h3>
         <p className="font-sans text-sm sm:text-[15px] text-gray-700 leading-relaxed font-normal flex-1 text-justify px-1 sm:px-2">
           {description}

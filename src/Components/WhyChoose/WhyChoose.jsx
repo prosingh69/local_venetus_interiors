@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import LettersPullUp from '../Animations/LettersPullUp';
 import FadeUp from '../Animations/FadeUp';
+import { useConsultationModal } from '../../context/ConsultationModalContext';
 
 // The 4 items matching The KariGhars content & data structure
 const leftColumnData = [
@@ -32,6 +33,8 @@ const rightColumnData = [
 ];
 
 const WhyChoose = ({ locationName = 'Bangalore' }) => {
+  const { openModal } = useConsultationModal();
+
   return (
     <section className="w-full bg-surface-soft py-12 sm:py-15 md:py-18 border-t border-b border-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 lg:px-14">
@@ -74,12 +77,16 @@ const WhyChoose = ({ locationName = 'Bangalore' }) => {
             {/* CTA Button — centered on mobile, left-aligned on desktop */}
             <FadeUp delay={0.4} duration={0.6}>
               <div className="flex justify-center lg:justify-start">
-                <NavLink
-                  to="/contact"
-                  className="font-sans inline-block bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold tracking-wide px-8 py-3.5 rounded-md transition-all duration-300 shadow-md shadow-primary/20 hover:shadow-lg active:scale-95 text-center uppercase"
+                <button
+                  type="button"
+                  onClick={() => openModal({
+                    title: `Book a Free Consultation in ${locationName}`,
+                    subtitle: 'Our senior architects handle space optimization, quality materials & transparent pricing.'
+                  })}
+                  className="font-sans inline-block bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold tracking-wide px-8 py-3.5 rounded-md transition-all duration-300 shadow-md shadow-primary/20 hover:shadow-lg active:scale-95 text-center uppercase cursor-pointer"
                 >
                   Book A Free Consultation
-                </NavLink>
+                </button>
               </div>
             </FadeUp>
 

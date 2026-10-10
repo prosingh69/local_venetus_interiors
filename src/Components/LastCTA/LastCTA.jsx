@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
+import { useConsultationModal } from '../../context/ConsultationModalContext';
 
 const LastCTA = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const { openModal } = useConsultationModal();
 
   return (
     <section
@@ -40,13 +41,17 @@ const LastCTA = () => {
           transition={{ duration: 0.5, delay: 0.35 }}
           className="w-full sm:w-auto flex justify-center"
         >
-          <NavLink
-            to="/contact"
-            className="group w-full sm:w-auto max-w-xs sm:max-w-none inline-flex justify-center items-center gap-2 bg-white text-primary hover:bg-neutral-100 font-semibold text-xs sm:text-sm md:text-base py-3 sm:py-3.5 px-7 sm:px-8 rounded-full shadow-lg shadow-black/10 transition-all duration-300 active:scale-95 shrink-0"
+          <button
+            type="button"
+            onClick={() => openModal({
+              title: 'Schedule Your Free Consultation',
+              subtitle: 'Get free, honest interior advice, personalized 3D design concepts & transparent itemized pricing.'
+            })}
+            className="group w-full sm:w-auto max-w-xs sm:max-w-none inline-flex justify-center items-center gap-2 bg-white text-primary hover:bg-neutral-100 font-semibold text-xs sm:text-sm md:text-base py-3 sm:py-3.5 px-7 sm:px-8 rounded-full shadow-lg shadow-black/10 transition-all duration-300 active:scale-95 shrink-0 cursor-pointer"
           >
             <span>Schedule Your Free Consultation</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
-          </NavLink>
+          </button>
         </motion.div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import FadeUp from '../Animations/FadeUp';
 
 const CompanyIntro = () => {
   const [projectType, setProjectType] = useState('');
+  const [isSelectFocused, setIsSelectFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef(null);
 
@@ -157,50 +158,78 @@ const CompanyIntro = () => {
 
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 {/* Name */}
-                <div>
+                <div className="relative">
                   <input
                     type="text"
                     name="user_name"
+                    id="intro_user_name"
                     required
-                    placeholder="Name *"
-                    className="w-full bg-transparent border-b border-gray-300 focus:border-primary py-2.5 px-1 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 outline-none transition-colors"
+                    placeholder=" "
+                    className="peer w-full px-4 pt-4 pb-2.5 sm:pt-4.5 sm:pb-3 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-xl outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder-transparent"
                   />
+                  <label
+                    htmlFor="intro_user_name"
+                    className="absolute left-3.5 top-3.5 sm:top-4 px-1.5 bg-white text-xs sm:text-sm text-gray-400 font-normal transition-all duration-200 pointer-events-none origin-left 
+                    peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary peer-focus:font-semibold
+                    peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 peer-[:not(:placeholder-shown)]:font-medium"
+                  >
+                    Your Name <span className="text-primary">*</span>
+                  </label>
                 </div>
 
                 {/* Phone No */}
-                <div>
+                <div className="relative">
                   <input
                     type="tel"
                     name="user_phone"
+                    id="intro_user_phone"
                     required
-                    placeholder="Phone No. *"
-                    className="w-full bg-transparent border-b border-gray-300 focus:border-primary py-2.5 px-1 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 outline-none transition-colors"
+                    placeholder=" "
+                    className="peer w-full px-4 pt-4 pb-2.5 sm:pt-4.5 sm:pb-3 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-xl outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder-transparent"
                   />
+                  <label
+                    htmlFor="intro_user_phone"
+                    className="absolute left-3.5 top-3.5 sm:top-4 px-1.5 bg-white text-xs sm:text-sm text-gray-400 font-normal transition-all duration-200 pointer-events-none origin-left 
+                    peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary peer-focus:font-semibold
+                    peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 peer-[:not(:placeholder-shown)]:font-medium"
+                  >
+                    Phone Number <span className="text-primary">*</span>
+                  </label>
                 </div>
 
                 {/* Email ID */}
-                <div>
+                <div className="relative">
                   <input
                     type="email"
                     name="user_email"
+                    id="intro_user_email"
                     required
-                    placeholder="Email ID *"
-                    className="w-full bg-transparent border-b border-gray-300 focus:border-primary py-2.5 px-1 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 outline-none transition-colors"
+                    placeholder=" "
+                    className="peer w-full px-4 pt-4 pb-2.5 sm:pt-4.5 sm:pb-3 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-xl outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder-transparent"
                   />
+                  <label
+                    htmlFor="intro_user_email"
+                    className="absolute left-3.5 top-3.5 sm:top-4 px-1.5 bg-white text-xs sm:text-sm text-gray-400 font-normal transition-all duration-200 pointer-events-none origin-left 
+                    peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary peer-focus:font-semibold
+                    peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 peer-[:not(:placeholder-shown)]:font-medium"
+                  >
+                    Email Address <span className="text-primary">*</span>
+                  </label>
                 </div>
 
                 {/* Choose Project (Select Dropdown) */}
                 <div className="relative">
                   <select
                     name="project_type"
+                    id="intro_project_type"
                     required
                     value={projectType}
+                    onFocus={() => setIsSelectFocused(true)}
+                    onBlur={() => setIsSelectFocused(false)}
                     onChange={(e) => setProjectType(e.target.value)}
-                    className="w-full bg-transparent border-b border-gray-300 focus:border-primary py-2.5 px-1 text-sm sm:text-base text-gray-900 outline-none transition-colors appearance-none cursor-pointer pr-8"
+                    className="w-full px-4 pt-4 pb-2.5 sm:pt-4.5 sm:pb-3 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-xl outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer pr-10"
                   >
-                    <option value="" disabled className="text-gray-400">
-                      Choose Project *
-                    </option>
+                    <option value="" disabled></option>
                     <option value="1 BHK Interior" className="text-gray-900">1 BHK Interior</option>
                     <option value="2 BHK Interior" className="text-gray-900">2 BHK Interior</option>
                     <option value="3 BHK Interior" className="text-gray-900">3 BHK Interior</option>
@@ -209,26 +238,59 @@ const CompanyIntro = () => {
                     <option value="Full Home Transformation" className="text-gray-900">Full Home Transformation</option>
                     <option value="Others" className="text-gray-900">Others</option>
                   </select>
-                  <ChevronDown className="w-4 h-4 text-gray-500 absolute right-1 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <label
+                    htmlFor="intro_project_type"
+                    className={`absolute left-3.5 px-1.5 bg-white transition-all duration-200 pointer-events-none origin-left ${
+                      projectType || isSelectFocused
+                        ? '-top-2.5 left-3 text-xs font-semibold ' + (isSelectFocused ? 'text-primary' : 'text-gray-600')
+                        : 'top-3.5 sm:top-4 text-xs sm:text-sm text-gray-400 font-normal'
+                    }`}
+                  >
+                    Choose Project <span className="text-primary">*</span>
+                  </label>
+                  <ChevronDown
+                    className={`w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-200 ${
+                      isSelectFocused ? 'rotate-180 text-primary' : 'text-gray-500'
+                    }`}
+                  />
                 </div>
 
                 {/* Project Location */}
-                <div>
+                <div className="relative">
                   <input
                     type="text"
                     name="project_location"
-                    placeholder="Your Project Location (e.g. Whitefield, HSR...)"
-                    className="w-full bg-transparent border-b border-gray-300 focus:border-primary py-2.5 px-1 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 outline-none transition-colors"
+                    id="intro_project_location"
+                    placeholder=" "
+                    className="peer w-full px-4 pt-4 pb-2.5 sm:pt-4.5 sm:pb-3 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-xl outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder-transparent"
                   />
+                  <label
+                    htmlFor="intro_project_location"
+                    className="absolute left-3.5 top-3.5 sm:top-4 px-1.5 bg-white text-xs sm:text-sm text-gray-400 font-normal transition-all duration-200 pointer-events-none origin-left 
+                    peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary peer-focus:font-semibold
+                    peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 peer-[:not(:placeholder-shown)]:font-medium"
+                  >
+                    Project Location (e.g. Whitefield, Sarjapur, HSR...)
+                  </label>
                 </div>
 
                 {/* Message / Requirements (Optional) */}
-                <div>
+                <div className="relative">
                   <textarea
                     name="message"
-                    placeholder="Message / Specific Requirements (Optional)..."
-                    className="w-full bg-transparent border-b border-gray-300 focus:border-primary py-2.5 px-1 text-sm sm:text-base text-gray-900 placeholder:text-gray-400 outline-none transition-colors resize-none h-16 max-h-24"
+                    id="intro_message"
+                    placeholder=" "
+                    rows="2"
+                    className="peer w-full px-4 pt-3.5 pb-2 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-xl outline-none transition-all duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder-transparent resize-none h-20"
                   />
+                  <label
+                    htmlFor="intro_message"
+                    className="absolute left-3.5 top-3.5 px-1.5 bg-white text-xs sm:text-sm text-gray-400 font-normal transition-all duration-200 pointer-events-none origin-left 
+                    peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:text-primary peer-focus:font-semibold
+                    peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-3 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600 peer-[:not(:placeholder-shown)]:font-medium"
+                  >
+                    Message / Specific Requirements (Optional)
+                  </label>
                 </div>
 
                 {/* Submit Button */}

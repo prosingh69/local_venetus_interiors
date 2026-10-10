@@ -13,6 +13,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import LettersPullUp from '../Animations/LettersPullUp';
 import FadeUp from '../Animations/FadeUp';
+import { useConsultationModal } from '../../context/ConsultationModalContext';
 
 const stepsData = [
   {
@@ -81,6 +82,7 @@ const SimpleProcess = () => {
   // Step 1 is active by default
   const [activeStep, setActiveStep] = useState(1);
   const currentStep = stepsData.find((s) => s.id === activeStep) || stepsData[0];
+  const { openModal } = useConsultationModal();
 
   return (
     <section className="w-full bg-surface-soft pt-10 sm:pt-12 md:pt-14 pb-10 sm:pb-14 md:pb-16 border-t border-b border-gray-100 overflow-hidden">
@@ -172,13 +174,17 @@ const SimpleProcess = () => {
                         {currentStep.actionDesc}
                       </p>
 
-                      <NavLink
-                        to="/contact"
-                        className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover text-xs sm:text-sm font-semibold transition-colors"
+                      <button
+                        type="button"
+                        onClick={() => openModal({
+                          title: `Step ${currentStep.stepNumber} · ${currentStep.title}`,
+                          subtitle: currentStep.actionDesc
+                        })}
+                        className="inline-flex items-center gap-1.5 text-primary hover:text-primary-hover text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
                       >
                         <span>Start this step with our experts</span>
                         <ArrowRight className="w-3.5 h-3.5" />
-                      </NavLink>
+                      </button>
                     </motion.div>
                   </AnimatePresence>
                 </div>

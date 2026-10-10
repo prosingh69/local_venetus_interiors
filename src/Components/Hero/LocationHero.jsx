@@ -3,6 +3,7 @@ import { ArrowRight, ChevronRight, Sparkle, Building2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { TypingEffect } from '../Animations/TypingEffect';
+import { useConsultationModal } from '../../context/ConsultationModalContext';
 
 /**
  * LocationHeroPanel1 — First Viewport Panel
@@ -12,6 +13,7 @@ import { TypingEffect } from '../Animations/TypingEffect';
 const LocationHeroPanel1 = ({ locationName = 'Indiranagar', bgImage = '/design.jpg' }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { openModal } = useConsultationModal();
 
   return (
     <div
@@ -178,13 +180,18 @@ const LocationHeroPanel1 = ({ locationName = 'Indiranagar', bgImage = '/design.j
                 transition={{ duration: 0.45, ease: 'easeOut', delay: 1.65 }}
                 className="w-full sm:w-auto max-w-xs sm:max-w-none flex justify-center"
               >
-                <NavLink
-                  to="/contact"
-                  className="font-sans group w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary-hover text-white py-2.5 sm:py-3 px-5 sm:px-6 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 active:scale-95 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 shrink-0"
+                <button
+                  type="button"
+                  onClick={() => openModal({
+                    title: `Book Free Consultation in ${locationName}`,
+                    subtitle: `Transform your ${locationName} residence with bespoke luxury designs & transparent pricing.`,
+                    projectLocation: locationName
+                  })}
+                  className="font-sans group w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary-hover text-white py-2.5 sm:py-3 px-5 sm:px-6 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 active:scale-95 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 shrink-0 cursor-pointer"
                 >
                   <span>Book Free Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
-                </NavLink>
+                </button>
               </motion.div>
 
               <motion.div

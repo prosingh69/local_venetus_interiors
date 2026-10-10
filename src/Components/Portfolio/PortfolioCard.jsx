@@ -9,7 +9,7 @@ const PortfolioCard = ({
   Challenge,           
   Solution,
   Result,
-  imagePosition = "object-center" // Default position set ki hai
+  imagePosition = "object-center"
 }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef(null);
@@ -56,7 +56,6 @@ const PortfolioCard = ({
           src={AfterImg} 
           alt="After" 
           loading="lazy" 
-          // imagePosition prop ko yahan add kiya
           className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${imagePosition}`} 
           draggable="false" 
         />
@@ -65,7 +64,6 @@ const PortfolioCard = ({
           src={BeforeImg} 
           alt="Before" 
           loading="lazy"
-          // imagePosition prop ko yahan add kiya
           className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${imagePosition}`} 
           draggable="false" 
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }} 
@@ -87,7 +85,6 @@ const PortfolioCard = ({
         </div>
       </div>
 
-      {/* Text Section niche same rahega */}
       <div className={textSectionClasses}>
         <h3 className={titleClasses}>
           {Title}

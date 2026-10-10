@@ -1,30 +1,56 @@
-import React from 'react'
-import { ArrowRight } from "lucide-react"
-import { NavLink } from 'react-router-dom'
+import React, { useRef } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
 
 const AboutLastCta = () => {
-  return (
-    <section className='flex flex-col items-center justify-center bg-[#B74B21] py-16 md:py-24 px-5'>
-        
-        
-        <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 text-center leading-tight'>
-            Let's Create Something Beautiful
-        </h2>
-        
-        
-        <p className='text-base md:text-[18px] text-white/90 mb-6 md:mb-8 text-center'>
-            Schedule a consultation with our team today.
-        </p>
-        
-        <NavLink 
-            to="/contact" 
-            className='group flex justify-center items-center gap-2 bg-white text-[#B74B21] border-2 border-white font-semibold px-6 py-3 md:px-8 md:py-3.5 cursor-pointer active:scale-95 rounded-lg shadow-lg'
-        >
-            Get Started 
-            <ArrowRight className='w-5 h-5' />
-        </NavLink>
-    </section>
-  )
-}
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
 
-export default AboutLastCta
+  return (
+    <section
+      ref={ref}
+      className="w-full bg-primary py-14 sm:py-18 md:py-22 px-4 sm:px-6 md:px-8 text-center overflow-hidden flex flex-col items-center justify-center"
+    >
+      <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+        {/* Title — single line on window/desktop, matching section heading font */}
+        <motion.h2
+          className="font-sans text-2xl xs:text-3xl sm:text-4xl md:text-[42px] lg:text-[46px] font-bold text-white tracking-tight leading-[1.18] mb-3 sm:mb-4 text-center md:whitespace-nowrap drop-shadow-sm max-w-4xl px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          Let's Create Something Beautiful
+        </motion.h2>
+
+        {/* Subtitle Paragraph */}
+        <motion.p
+          className="font-sans text-xs sm:text-sm md:text-base text-white/95 mb-7 sm:mb-8 text-center max-w-xl leading-relaxed px-2 drop-shadow-sm"
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          Schedule an in-person design consultation with our senior architects in Bangalore. Transparent pricing & 10-year warranty.
+        </motion.p>
+
+        {/* Action Button — White luxury pill button on primary background */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="w-full sm:w-auto flex justify-center"
+        >
+          <NavLink
+            to="/contact"
+            className="group w-full sm:w-auto max-w-xs sm:max-w-none inline-flex justify-center items-center gap-2 bg-white text-primary hover:bg-neutral-100 font-semibold text-xs sm:text-sm md:text-base py-3 sm:py-3.5 px-7 sm:px-8 rounded-full shadow-lg shadow-black/10 transition-all duration-300 active:scale-95 shrink-0"
+          >
+            <span>Get Started</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
+          </NavLink>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default AboutLastCta;

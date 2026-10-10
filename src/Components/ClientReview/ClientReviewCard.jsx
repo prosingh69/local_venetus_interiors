@@ -11,10 +11,10 @@ const ClientReviewCard = ({ Para, Name, Location, Type }) => {
         ))}
 
       </div>
-      <p className='mt-3 mb-3 border-b border-black/20 pb-10 italic text-[#984C40]'>"{Para}"</p>
+      <p className='mt-3 mb-3 border-b border-black/20 pb-10 italic text-secondary'>"{Para}"</p>
       <span className='block font-semibold'>{Name}</span>
-      <span className='block text-[#984C40]'>{Location}</span>
-      <span className='block text-[#F0A930] font-medium text-[14px]'>{Type}</span>
+      <span className='block text-secondary'>{Location}</span>
+      <span className='block text-accent font-medium text-[14px]'>{Type}</span>
     </div>
   )
 }

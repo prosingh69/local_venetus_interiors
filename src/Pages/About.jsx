@@ -12,14 +12,12 @@ const About = () => {
         <title>About Us | Venetus Interior</title>
         <meta name="description" content="Discover the vision behind Venetus Interior. We specialize in modern, elegant, and dark-themed interior styling that elevates your everyday living spaces." />
         <meta name="keywords" content="about Venetus Interior, interior design experts, luxury home styling, interior decor team, Bangalore interior design" />
-        <link rel="canonical" href="https://venetusinterior.in/about" />
+        <link rel="canonical" href="https://www.venetusinterior.in/about" />
 
-        
         <meta property="og:title" content="About Us | Venetus Interior" />
         <meta property="og:description" content="Discover the vision behind Venetus Interior. We specialize in modern, elegant, and dark-themed interior styling that elevates your everyday living spaces." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://venetusinterior.in/about" />
-        
+        <meta property="og:url" content="https://www.venetusinterior.in/about" />
       </Helmet>
 
       <main className="w-full overflow-x-hidden">

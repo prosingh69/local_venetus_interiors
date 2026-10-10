@@ -1,5 +1,5 @@
 {
-  "name": "venetusinetrior",
+  "name": "venetus-interior",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.2.2",
+    "framer-motion": "^13.2.0",
     "lucide-react": "^1.11.0",
     "react": "^19.2.0",
     "react-calendly": "^4.4.0",

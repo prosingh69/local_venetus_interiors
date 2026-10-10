@@ -10,12 +10,9 @@ const Process = () => {
   return (
     <>
       <Helmet prioritizeSeoTags>
-        <title>Our Interior Design Process | Venetus Interiors</title>
-        <meta name="description" content="Discover Venetus Interiors' step-by-step interior design process, quality materials, and seamless execution for your home." />
-        <title>Our Interior Design Process | Venetus Interior</title>
-        <meta name="description" content="Discover Venetus Interior's step-by-step interior design process, quality materials, and seamless execution for your home." />
-        <link rel="canonical" href="https://venetusinterior.in/process" />
-        <meta property="og:url" content="https://venetusinterior.in/process" />
+        <title>Our Process | Venetus Interior</title>
+        <meta name="description" content="Transparent, step-by-step interior design process from initial consultation to final handover with Venetus Interior." />
+        <link rel="canonical" href="https://www.venetusinterior.in/process" />
       </Helmet>
       <div>
         <HeroCard Title={"Our Process"} Para={"Transparent, step-by-step process from initial consultation to final handover with complete material transparency."}/>
@@ -23,7 +20,7 @@ const Process = () => {
         <Material/>
         <WhyWorks/>
         <LastCTA/>
-    </div>
+      </div>
     </>
   )
 }

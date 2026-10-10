@@ -1,0 +1,333 @@
+import React, { useRef } from 'react';
+import { ArrowRight, ChevronRight, Sparkle, Building2 } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
+import { TypingEffect } from '../Animations/TypingEffect';
+
+/**
+ * LocationHeroPanel1 — First Viewport Panel
+ * - High-res interior background image customized for location.
+ * - Dynamic 2-line title, location pill badge, action CTA buttons.
+ */
+const LocationHeroPanel1 = ({ locationName = 'Indiranagar', bgImage = '/design.jpg' }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <div
+      ref={ref}
+      className="relative w-full h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black"
+    >
+      {/* Background Image with Ambient Scale */}
+      <motion.div
+        initial={{ scale: 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      >
+        <img
+          src={bgImage}
+          alt={`Luxury Interior Designers in ${locationName}, Bangalore`}
+          className="w-full h-full object-cover object-center"
+        />
+      </motion.div>
+
+      {/* Cinematic Overlays for High Legibility */}
+      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/35 to-black pointer-events-none" />
+
+      {/* Content Container */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-8 md:px-12 lg:px-14 flex flex-col justify-center pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-8 text-center md:text-left">
+        
+        {/* Top Tag / Pill Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+          className="mb-2.5 sm:mb-3.5 flex items-center justify-center md:justify-start"
+        >
+          <NavLink
+            to="/services"
+            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98"
+          >
+            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full tracking-wide uppercase">
+              {locationName}
+            </span>
+            <span className="text-white/95">Luxury Interiors in {locationName}, Bangalore</span>
+            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform" />
+          </NavLink>
+        </motion.div>
+
+        {/* Dynamic 2-Line Headline for Location */}
+        <div className="mb-3 sm:mb-5 max-w-4xl flex flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0">
+          {/* Line 1 */}
+          <div className="w-full flex justify-center md:justify-start">
+            <TypingEffect
+              text={`Interior Designers in`}
+              className="font-sans text-white text-[24px] xs:text-[27px] sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[52px] font-bold tracking-tight leading-[1.1] drop-shadow-md"
+              startDelay={0.15}
+              charDelay={0.035}
+              align="responsive-hero"
+              nowrap={true}
+            />
+          </div>
+
+          {/* Line 2 — Stylized Serif Ampersand + Location Name */}
+          <div className="w-full flex justify-center md:justify-start mt-0.5 sm:mt-0 md:-mt-2">
+            <TypingEffect
+              segments={[
+                {
+                  text: '&',
+                  className: 'font-serif italic font-normal text-accent text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-[80px] xl:text-[88px] leading-none drop-shadow-md select-none inline-block align-baseline'
+                },
+                {
+                  text: `${locationName}`,
+                  className: 'font-sans font-bold text-white text-[22px] xs:text-[25px] sm:text-3xl md:text-5xl lg:text-[48px] xl:text-[52px] tracking-tight leading-[1.1] drop-shadow-md align-baseline'
+                }
+              ]}
+              startDelay={0.7}
+              charDelay={0.035}
+              align="responsive-hero"
+              itemsAlign="items-baseline"
+              nowrap={true}
+            />
+          </div>
+        </div>
+
+        {/* Bottom Split Row — Description on Left, Action Buttons on Right */}
+        <div className="w-full relative pt-1">
+          
+          {/* Accent Stars Framing */}
+          <div className="hidden md:flex w-full items-center justify-between pointer-events-none mb-2.5 sm:mb-3">
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 1.4 }}
+              className="text-white/75"
+            >
+              <Sparkle className="w-3.5 h-3.5 fill-white/75 text-white/75" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 1.4 }}
+              className="text-white/75 pr-0 md:pr-4"
+            >
+              <Sparkle className="w-3.5 h-3.5 fill-white/75 text-white/75" />
+            </motion.div>
+          </div>
+
+          {/* Description & Buttons */}
+          <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 1.5 }}
+              className="max-w-md lg:max-w-lg text-center md:text-left mx-auto md:mx-0"
+            >
+              <p className="font-sans text-white/85 text-xs sm:text-sm md:text-[14px] leading-relaxed font-normal drop-shadow-sm px-2 sm:px-0">
+                Transform your {locationName} residence with Venetus Interior. From modular kitchens to full turnkey luxury homes, we craft bespoke living spaces tailored around your lifestyle and budget — backed by up to 10-year warranty.
+              </p>
+            </motion.div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-end gap-3 sm:gap-3 w-full sm:w-auto shrink-0 relative pr-0 md:pr-4">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, ease: 'easeOut', delay: 1.65 }}
+                className="w-full sm:w-auto max-w-xs sm:max-w-none flex justify-center"
+              >
+                <NavLink
+                  to="/contact"
+                  className="font-sans group w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary-hover text-white py-2.5 sm:py-3 px-5 sm:px-6 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 active:scale-95 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 shrink-0"
+                >
+                  <span>Book Free Consultation</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
+                </NavLink>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, ease: 'easeOut', delay: 1.75 }}
+                className="w-full sm:w-auto max-w-xs sm:max-w-none flex justify-center"
+              >
+                <NavLink
+                  to="/portfolio"
+                  className="font-sans group w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white hover:bg-neutral-100 text-neutral-900 py-2.5 sm:py-3 px-5 sm:px-6 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 active:scale-95 shadow-md shrink-0"
+                >
+                  <span>View Portfolio</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0 text-neutral-700" />
+                </NavLink>
+              </motion.div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center z-10 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6, delay: 2.0 }}
+      >
+        <motion.div
+          className="w-px h-6 sm:h-7 bg-gradient-to-b from-white/45 to-transparent"
+          animate={{ scaleY: [1, 0.25, 1], opacity: [0.5, 0.15, 0.5] }}
+          transition={{ repeat: Infinity, duration: 1.7, ease: 'easeInOut' }}
+        />
+      </motion.div>
+    </div>
+  );
+};
+
+/**
+ * LocationHeroPanel2 — Second Hero Viewport Panel
+ * - Background cinematic video with dark gradient melt.
+ * - Project highlight tag (Active projects at key apartments).
+ * - Location-customized paragraph mentioning client apartments & turnkey scope.
+ * - Badges for key residential societies in that locality.
+ * - Sub-tagline.
+ */
+const LocationHeroPanel2 = ({ locConfig, locationName = 'Bangalore' }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-10%' });
+
+  const statement =
+    locConfig?.secondHeroStatement ||
+    `Crafting bespoke luxury homes, modular kitchens & full turnkey interiors in ${locationName}, Bangalore — backed by up to 10-year warranty and in-house execution.`;
+  const highlightProject = locConfig?.highlightProject;
+  const apartments = locConfig?.apartments || [];
+  const subTag = locConfig?.subTag || `${locationName} Living`;
+
+  return (
+    <div
+      ref={ref}
+      className="relative w-full min-h-[70vh] md:h-screen md:min-h-[100dvh] py-16 md:py-24 flex items-center justify-center overflow-hidden bg-black"
+    >
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="absolute inset-0 w-full h-full object-cover transform-gpu pointer-events-none scale-105"
+      >
+        <source src="/herosection2.mp4" type="video/mp4" />
+      </video>
+
+      {/* Cinematic Overlays that melt seamlessly into 100% pure black */}
+      <div className="absolute inset-0 bg-black/65 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
+      <div className="absolute inset-0 bg-[#5C2A0A]/18 pointer-events-none" />
+
+      {/* Content Container */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-8 flex flex-col items-center justify-center text-center">
+        
+        {/* Top Tag / Pill Badge — Identical structure & style as First Hero Section (No Glassmorphism) */}
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.08 }}
+          className="mb-5 sm:mb-6 flex items-center justify-center"
+        >
+          <NavLink
+            to="/portfolio"
+            className="group inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#121212] hover:bg-[#1c1c1c] border border-white/20 text-white text-[11px] sm:text-xs md:text-[13px] font-medium transition-all shadow-sm active:scale-98"
+          >
+            <span className="bg-primary text-white text-[9px] sm:text-[10px] md:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full tracking-wide uppercase">
+              {locationName}
+            </span>
+            <span className="text-white/95">
+              {highlightProject || `Luxury Interiors in ${locationName}, Bangalore`}
+            </span>
+            <ChevronRight className="w-3.5 h-3.5 text-white/70 group-hover:translate-x-0.5 transition-transform" />
+          </NavLink>
+        </motion.div>
+
+        {/* Top Decorative Accent Bar */}
+        <motion.div
+          className="w-12 h-px bg-primary/70 mb-5 sm:mb-7"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+        />
+
+        {/* Main Statement Paragraph — Customized for the Location */}
+        <motion.p
+          className="font-sans text-white/95 text-base sm:text-xl md:text-2xl lg:text-[27px] leading-relaxed font-normal tracking-normal mb-6 sm:mb-7 drop-shadow-sm max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.75, ease: 'easeOut', delay: 0.3 }}
+        >
+          {statement}
+        </motion.p>
+
+        {/* Apartment Societies Badges List — Solid Clean Dark Tags (Zero Glassmorphism) */}
+        {apartments && apartments.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-6 sm:mb-8 max-w-2xl"
+          >
+            <span className="text-gray-400 text-xs sm:text-sm font-medium mr-1 flex items-center gap-1.5">
+              <Building2 className="w-3.5 h-3.5 text-primary" />
+              Key Societies:
+            </span>
+            {apartments.map((apt, idx) => (
+              <span
+                key={idx}
+                className="px-3 sm:px-3.5 py-1 rounded-full bg-[#161616] border border-[#2b2b2b] text-gray-300 hover:text-white hover:border-primary/50 text-xs sm:text-[13px] font-medium transition-colors"
+              >
+                {apt}
+              </span>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Sub-tagline */}
+        <motion.p
+          className="font-sans text-primary text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold mb-5 sm:mb-7"
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+        >
+          Venetus Interior · {subTag}
+        </motion.p>
+
+        {/* Bottom Decorative Accent Bar */}
+        <motion.div
+          className="w-12 h-px bg-primary/70"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.75 }}
+        />
+      </div>
+    </div>
+  );
+};
+
+/**
+ * LocationHero — Combines Panel 1 (Image Hero) & Panel 2 (Hyper-local Projects & Societies)
+ */
+const LocationHero = ({ locConfig, locationName, bgImage }) => {
+  const name = locConfig?.name || locationName || 'Bangalore';
+  const image = locConfig?.image || bgImage || '/design.jpg';
+
+  return (
+    <section className="w-full bg-black border-none">
+      <LocationHeroPanel1 locationName={name} bgImage={image} />
+      <LocationHeroPanel2 locConfig={locConfig} locationName={name} />
+    </section>
+  );
+};
+
+export default LocationHero;

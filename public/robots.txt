@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://venetusinterior.in/sitemap.xml
+# Sitemap ka link
+Sitemap: https://www.venetusinterior.in/sitemap.xml

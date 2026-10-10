@@ -60,7 +60,7 @@ const HeroPanel1 = () => {
             initial={{ opacity: 0, y: 14 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="font-serif text-[30px] xs:text-[34px] sm:text-[38px] font-normal text-white tracking-tight leading-[1.12] drop-shadow-md"
+            className="font-serif text-[clamp(32px,8.6vw,44px)] font-normal text-white tracking-tight leading-[1.12] drop-shadow-md"
           >
             Your Dream Interiors
           </motion.h1>
@@ -71,7 +71,7 @@ const HeroPanel1 = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col items-center mt-1"
           >
-            <span className="font-serif italic text-[24px] xs:text-[27px] sm:text-[31px] font-normal text-primary tracking-tight leading-[1.18] drop-shadow-md">
+            <span className="font-serif italic text-[clamp(26px,6.8vw,36px)] font-normal text-primary tracking-tight leading-[1.18] drop-shadow-md">
               Designed Within Your Budget
             </span>
 
@@ -79,7 +79,7 @@ const HeroPanel1 = () => {
             <svg
               viewBox="0 0 260 12"
               fill="none"
-              className="w-56 xs:w-64 sm:w-72 h-2.5 mt-1 text-primary/80 pointer-events-none"
+              className="w-[clamp(230px,65vw,320px)] h-2.5 sm:h-3 mt-1 text-primary/80 pointer-events-none"
             >
               <path
                 d="M2 9C70 2 190 2 258 9"
@@ -159,7 +159,7 @@ const HeroPanel1 = () => {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 1.95 }}
               className="max-w-md lg:max-w-lg text-center md:text-left mx-auto md:mx-0"
             >
-              <p className="font-sans text-white/85 text-xs sm:text-sm md:text-[15px] leading-relaxed font-normal drop-shadow-sm px-2 sm:px-0">
+              <p className="font-sans text-white/85 text-[13px] min-[390px]:text-[14px] sm:text-sm md:text-[15px] leading-relaxed font-normal drop-shadow-sm px-0.5 sm:px-0">
                 No more compromising on quality or choice. From modular kitchens to full home interiors, we craft bespoke living spaces tailored exactly around your budget — backed by up to 10-year warranty.
               </p>
             </motion.div>

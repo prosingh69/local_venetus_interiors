@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { X, Info, Briefcase, LayoutGrid, Route, Home, Play } from 'lucide-react';
+import { X, Info, Briefcase, LayoutGrid, Home, Play, ChevronRight, Phone, Sparkles, ShieldCheck } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useConsultationModal } from '../../../context/ConsultationModalContext';
 
 const WA_PATH = 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { openModal } = useConsultationModal();
   const location = useLocation();
   const isHomePage = location.pathname === '/' || location.pathname === '';
   const isLocationPage = location.pathname.toLowerCase().includes('interior-designers');
@@ -25,8 +27,28 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', h);
   }, []);
 
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isSidebarOpen]);
+
   const toggleSidebar = () => setIsSidebarOpen(p => !p);
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const mobileNavItems = [
+    { label: 'Home',      to: '/',          icon: Home },
+    { label: 'About',     to: '/About',     icon: Info },
+    { label: 'Services',  to: '/Services',  icon: Briefcase },
+    { label: 'Portfolio', to: '/Portfolio', icon: LayoutGrid },
+    { label: 'Video',     to: '/Video',     icon: Play },
+    { label: 'Contact',   to: '/Contact',   icon: Phone },
+  ];
 
   // Scrolled navbar is solid black, so text is always light on black background
   const isLightText = isHeroTransparent || isScrolled;
@@ -42,10 +64,6 @@ const Navbar = () => {
       isActive ? 'text-primary' : 'text-gray-800 hover:text-primary'
     }`;
   };
-
-  const sidebarLinkClasses = ({ isActive }) =>
-    'flex items-center gap-4 transition-colors duration-200 hover:text-primary font-semibold text-[17px] ' +
-    (isActive ? 'text-primary' : 'text-gray-700');
 
   // Solid black background on scroll everywhere, transparent on homepage & location page at scroll 0
   const navBgClass = isScrolled
@@ -91,7 +109,6 @@ const Navbar = () => {
               { label: 'About',     to: '/About'     },
               { label: 'Services',  to: '/Services'  },
               { label: 'Portfolio', to: '/Portfolio' },
-              { label: 'Process',   to: '/Process'   },
               { label: 'Video',     to: '/Video'     },
             ].map(({ label, to }) => (
               <NavLink key={label} to={to} end={to === '/'} className={navLinkClasses}>
@@ -140,32 +157,103 @@ const Navbar = () => {
       )}
 
       {/* Sidebar Overlay — covers whole screen including navbar */}
-      <div className={'fixed inset-0 bg-black/50 z-50 md:hidden backdrop-blur-sm transition-opacity duration-300 ' + (isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none')} onClick={toggleSidebar} />
+      <div
+        className={`fixed inset-0 bg-black/75 z-50 md:hidden backdrop-blur-md transition-opacity duration-300 ${
+          isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={closeSidebar}
+        aria-hidden="true"
+      />
 
-      {/* Mobile Sidebar — sits above overlay */}
-      <div className={'fixed top-0 left-0 h-full w-72 bg-surface-soft shadow-2xl z-[60] transform transition-transform duration-300 ease-in-out md:hidden flex flex-col ' + (isSidebarOpen ? 'translate-x-0' : '-translate-x-full')}>
-        <div className='flex justify-between items-center px-5 py-4 border-b border-brand-light'>
-          <NavLink to='/' onClick={closeSidebar} className='flex items-center'>
-            <img src='/logo_1.png' className='h-14 w-auto object-contain' alt='Venetus Interior logo' />
+      {/* Mobile Sidebar — Clean Minimalist Luxury Dark Drawer */}
+      <aside
+        aria-label="Mobile Navigation Drawer"
+        className={`fixed top-0 left-0 h-full w-72 sm:w-80 bg-neutral-950 text-white shadow-2xl z-[60] transform transition-transform duration-300 ease-out md:hidden flex flex-col border-r border-white/10 ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {/* Header */}
+        <div className="flex justify-between items-center px-6 py-4.5 border-b border-white/10">
+          <NavLink to="/" onClick={closeSidebar} className="flex items-center">
+            <img src="/logo_1.png" className="h-11 w-auto object-contain brightness-105" alt="Venetus Interior logo" />
           </NavLink>
-          <button onClick={toggleSidebar} className='p-2 bg-white rounded-full text-gray-700 hover:text-primary hover:bg-brand-light transition-colors shadow-sm'><X size={20} /></button>
+          <button
+            onClick={closeSidebar}
+            className="p-1.5 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label="Close menu"
+          >
+            <X size={20} />
+          </button>
         </div>
-        <div className='flex flex-col p-6 gap-5 overflow-y-auto mt-2'>
-          <NavLink to='/' end onClick={closeSidebar} className={sidebarLinkClasses}><Home size={20} className='text-primary' />Home</NavLink>
-          <NavLink to='/About' onClick={closeSidebar} className={sidebarLinkClasses}><Info size={20} className='text-primary' />About</NavLink>
-          <NavLink to='/Services' onClick={closeSidebar} className={sidebarLinkClasses}><Briefcase size={20} className='text-primary' />Services</NavLink>
-          <NavLink to='/Portfolio' onClick={closeSidebar} className={sidebarLinkClasses}><LayoutGrid size={20} className='text-primary' />Portfolio</NavLink>
-          <NavLink to='/Process' onClick={closeSidebar} className={sidebarLinkClasses}><Route size={20} className='text-primary' />Process</NavLink>
-          <NavLink to='/Video' onClick={closeSidebar} className={sidebarLinkClasses}><Play size={20} className='text-primary' />Video</NavLink>
-          <div className='mt-4 pt-5 border-t border-brand-light flex flex-col gap-3'>
-            <NavLink to='/Contact' onClick={closeSidebar} className='block w-full text-center bg-primary py-3 px-6 rounded-xl text-white font-bold hover:bg-primary-hover transition-all duration-300 shadow-md shadow-primary/25 active:scale-95'>Get Started</NavLink>
-            <a href='https://wa.me/919916565945' target='_blank' rel='noopener noreferrer' className='flex items-center justify-center gap-2 border border-whatsapp text-whatsapp py-2.5 px-6 rounded-xl font-semibold hover:bg-green-50 transition-all'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' className='fill-current'><path d={WA_PATH} /></svg>
-              WhatsApp Us
-            </a>
+
+        {/* Navigation Links — Clean, Minimal, Non-messy */}
+        <div className="flex-1 overflow-y-auto px-5 py-6 flex flex-col justify-between">
+          <nav className="space-y-1" aria-label="Mobile Menu Links">
+            {mobileNavItems.map(({ label, to, icon: Icon }) => (
+              <NavLink
+                key={label}
+                to={to}
+                end={to === '/'}
+                onClick={closeSidebar}
+                className={({ isActive }) =>
+                  `flex items-center gap-3.5 px-3 py-3 rounded-lg transition-colors duration-200 ${
+                    isActive
+                      ? 'text-primary font-semibold'
+                      : 'text-white/75 hover:text-white'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <Icon size={18} className={`shrink-0 transition-colors ${isActive ? 'text-primary' : 'text-white/40'}`} />
+                    <span className="text-[16px] tracking-wide">{label}</span>
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </nav>
+
+          {/* Bottom Action Area */}
+          <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                closeSidebar();
+                openModal({
+                  title: 'Book Free Consultation',
+                  subtitle: 'Connect with our senior interior architects for transparent pricing and custom 3D layouts.'
+                });
+              }}
+              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white py-3 px-5 rounded-full font-semibold text-sm shadow-md shadow-primary/20 active:scale-95 transition-all cursor-pointer"
+            >
+              <Sparkles size={15} />
+              <span>Book Free Consultation</span>
+            </button>
+
+            <div className="grid grid-cols-2 gap-2.5">
+              <a
+                href="tel:+919916565945"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 text-xs font-semibold transition-all active:scale-95"
+              >
+                <Phone size={13} className="text-primary shrink-0" />
+                <span>Call Studio</span>
+              </a>
+
+              <a
+                href="https://wa.me/919916565945?text=Hi%20Venetus%20Interior%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 text-xs font-semibold transition-all active:scale-95"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" className="fill-whatsapp shrink-0">
+                  <path d={WA_PATH} />
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </aside>
     </>
   );
 };

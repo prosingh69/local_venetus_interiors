@@ -44,17 +44,40 @@ const AboutHero = () => {
           About Venetus Interior
         </motion.p>
 
-        {/* Main Quote */}
+        {/* Main Quote — Mobile View: Short, Big 2-Line Title matching Homepage Hero sizing */}
+        <div className="md:hidden flex flex-col items-center text-center mb-3.5 w-full">
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-serif text-[clamp(32px,8.6vw,44px)] font-normal text-white tracking-tight leading-[1.12] drop-shadow-md"
+          >
+            Crafting Timeless Homes
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-1"
+          >
+            <span className="font-serif italic text-[clamp(26px,6.8vw,36px)] font-normal text-primary tracking-tight leading-[1.18] drop-shadow-md block">
+              Shaped Around Your Life
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Main Quote — Desktop View: Grand Editorial Quote */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}
-          className="text-[clamp(18px,5vw,52px)] text-white leading-[1.25] tracking-tight mb-4 sm:mb-5 max-w-full"
+          className="hidden md:block font-serif text-4xl lg:text-5xl xl:text-[54px] font-normal text-white leading-[1.2] tracking-tight mb-5 max-w-4xl"
         >
-          <span className="block font-sans font-bold whitespace-nowrap">
+          <span className="block whitespace-nowrap">
             We don't just design homes.
           </span>
-          <span className="block font-serif font-semibold italic text-primary text-[1.04em] whitespace-nowrap mt-1 sm:mt-1.5 drop-shadow-[0_2px_14px_rgba(212,165,58,0.25)]">
+          <span className="block italic text-primary mt-1.5 whitespace-nowrap drop-shadow-[0_2px_14px_rgba(212,165,58,0.25)]">
             We design the way you live.
           </span>
         </motion.h1>
@@ -64,7 +87,7 @@ const AboutHero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: 'easeOut', delay: 0.65 }}
-          className="font-sans text-white/70 text-sm sm:text-base md:text-[17px] leading-relaxed max-w-xl"
+          className="font-sans text-white/75 text-sm sm:text-base md:text-[17px] leading-relaxed max-w-xl mx-auto px-1 sm:px-0"
         >
           Started in 2024 with bespoke craftsmanship, in-house execution, and timeless design — all backed by up to a 10-year warranty.
         </motion.p>

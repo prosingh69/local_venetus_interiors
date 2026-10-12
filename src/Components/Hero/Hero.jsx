@@ -271,7 +271,7 @@ const HeroPanel2 = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, ease: 'easeOut', delay: 0.3 }}
         >
-          20+ homes crafted since 2014 — modular kitchens, living spaces & full interiors, backed by up to 10-year warranty. Every material sourced and executed in-house.
+          20+ homes crafted since 2024 — modular kitchens, living spaces & full interiors, backed by up to 10-year warranty. Every material sourced and executed in-house.
         </motion.p>
 
         {/* Sub-tagline */}

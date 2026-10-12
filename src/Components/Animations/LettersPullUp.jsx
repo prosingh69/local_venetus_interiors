@@ -35,7 +35,10 @@ const LettersPullUp = ({
     >
       {words.map((word, wIdx) => {
         const cleanWord = word.replace(/[^a-zA-Z0-9]/g, '');
-        const isHighlight = highlightWord && cleanWord.toLowerCase() === highlightWord.toLowerCase();
+        const highlightList = highlightWord 
+          ? highlightWord.toLowerCase().split(/\s+/).filter(Boolean)
+          : [];
+        const isHighlight = highlightList.includes(cleanWord.toLowerCase());
         const letters = word.split('');
         return (
           <span

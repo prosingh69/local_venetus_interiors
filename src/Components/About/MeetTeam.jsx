@@ -23,7 +23,7 @@ const MeetTeam = () => {
       Profile: "https://randomuser.me/api/portraits/men/32.jpg",
       Name: "Abhinay Singh",
       Profession: "Designer",
-      Detail: "15+ years of experience in luxury interior design. Specializes in modern and contemporary designs."
+      Detail: "Expert in luxury interior styling and space planning. Specializes in modern and contemporary designs."
     },
     {
       id: 2,
@@ -45,13 +45,13 @@ const MeetTeam = () => {
     <section className='w-full bg-white py-10 sm:py-16 md:py-20'>
       <div className='max-w-screen-xl mx-auto px-5 md:px-10 lg:px-14 flex flex-col items-center'>
         <FadeUp delay={0.05} duration={0.65}>
-          <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 text-center text-balance'>
-            Meet Our Team
+          <h2 className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-[46px] font-bold text-gray-900 tracking-tight leading-[1.18] mb-3 text-center text-balance">
+            The Creative Minds Behind <span className="text-primary italic">Venetus Interior</span>
           </h2>
         </FadeUp>
         <FadeUp delay={0.18} duration={0.6}>
-          <p className='text-secondary text-sm sm:text-base md:text-lg mb-8 sm:mb-10 text-center text-balance max-w-2xl px-2'>
-            Expert designers with years of experience in Bangalore interior design
+          <p className="text-gray-600 text-sm sm:text-base md:text-[17px] mb-8 sm:mb-12 text-center text-balance max-w-2xl px-2 leading-relaxed">
+            Dedicated designers, planners & craftsmen turning your Bangalore spaces into personalized works of art.
           </p>
         </FadeUp>
         <motion.div

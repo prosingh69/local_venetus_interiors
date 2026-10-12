@@ -10,7 +10,9 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/' || location.pathname === '';
   const isLocationPage = location.pathname.toLowerCase().includes('interior-designers');
-  const isHeroTransparent = isHomePage || isLocationPage;
+  const isAboutPage = location.pathname === '/about' || location.pathname === '/About';
+  const isServicesPage = location.pathname === '/services' || location.pathname === '/Services';
+  const isHeroTransparent = isHomePage || isLocationPage || isAboutPage || isServicesPage;
   const isContactPage = location.pathname === '/Contact' || location.pathname === '/contact';
 
   useEffect(() => {

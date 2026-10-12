@@ -105,7 +105,7 @@ const CompanyIntro = () => {
             <FadeUp delay={0.25} duration={0.65}>
               <div className="space-y-4 sm:space-y-5 text-sm sm:text-base md:text-[16px] text-gray-300 font-normal leading-relaxed text-justify px-1 sm:px-0">
                 <p>
-                  At <strong className="text-white font-semibold">Venetus Interior</strong>, we create bespoke home interiors that bring together thoughtful design, functionality, and refined finishes. With 12+ years of expertise and 20+ completed homes, we craft spaces that truly reflect your lifestyle, personal preferences, and daily requirements.
+                  At <strong className="text-white font-semibold">Venetus Interior</strong>, we create bespoke home interiors that bring together thoughtful design, functionality, and refined finishes. Started in 2024 with 20+ completed homes, we craft spaces that truly reflect your lifestyle, personal preferences, and daily requirements.
                 </p>
 
                 <p>

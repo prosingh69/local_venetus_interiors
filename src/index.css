@@ -26,6 +26,7 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-display: 'Michroma', 'Syncopate', sans-serif;
+  --font-calsans: 'Cal Sans', sans-serif;
 }
 
 body {
@@ -60,6 +61,19 @@ body {
   font-family: "Ubuntu", sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cal Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/CalSans.ttf') format('truetype'),
+       url('https://fonts.gstatic.com/s/calsans/v2/fdN99sWUv3gWqXxqqSBb.ttf') format('truetype');
+}
+
+.font-calsans {
+  font-family: 'Cal Sans', sans-serif;
 }
 
 /* Sleek custom primary scrollbar for modals */

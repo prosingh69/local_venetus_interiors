@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
@@ -81,7 +82,13 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto px-5 md:px-10 lg:px-14">
         
         {/* Main 4-Column Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#222222]">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#222222]"
+        >
           
           {/* Column 1: Brand & Logo (Spans 4 columns on lg) */}
           <div className="lg:col-span-4 flex flex-col justify-between h-full">
@@ -197,17 +204,23 @@ const Footer = () => {
             </ul>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Bottom Copyright & SEO Signature */}
-        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500"
+        >
           <p>
             &copy; {currentYear} Venetus Interior. All rights reserved.
           </p>
           <p className="text-gray-400">
             Bangalore's Premier Luxury Interior Design Studio
           </p>
-        </div>
+        </motion.div>
 
       </div>
     </footer>

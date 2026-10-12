@@ -28,13 +28,29 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    const mainEl = document.querySelector('main');
+    const footerEl = document.querySelector('footer');
+
     if (isSidebarOpen) {
       document.body.style.overflow = 'hidden';
+      if (mainEl) {
+        mainEl.style.transition = 'filter 0.3s ease';
+        mainEl.style.filter = 'blur(6px)';
+      }
+      if (footerEl) {
+        footerEl.style.transition = 'filter 0.3s ease';
+        footerEl.style.filter = 'blur(6px)';
+      }
     } else {
       document.body.style.overflow = 'unset';
+      if (mainEl) mainEl.style.filter = 'none';
+      if (footerEl) footerEl.style.filter = 'none';
     }
+
     return () => {
       document.body.style.overflow = 'unset';
+      if (mainEl) mainEl.style.filter = 'none';
+      if (footerEl) footerEl.style.filter = 'none';
     };
   }, [isSidebarOpen]);
 
@@ -156,9 +172,9 @@ const Navbar = () => {
         <div className={'bg-surface-soft transition-all duration-500 ease-in-out shrink-0 ' + (isScrolled ? 'h-[60px] md:h-[70px]' : 'h-[100px] md:h-[120px]')} />
       )}
 
-      {/* Sidebar Overlay — covers whole screen including navbar */}
+      {/* Sidebar Overlay — covers whole screen including navbar with blur */}
       <div
-        className={`fixed inset-0 bg-black/75 z-50 md:hidden backdrop-blur-md transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/50 z-50 md:hidden backdrop-blur-md transition-all duration-300 ${
           isSidebarOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={closeSidebar}
